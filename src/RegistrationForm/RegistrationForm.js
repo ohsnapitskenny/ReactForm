@@ -1,5 +1,5 @@
+import './RegistrationForm.css';
 import React, {useState} from 'react';
-// import UseRegistrationForm from './hooks/useRegistrationForm';
 import FormInput from '../components/FormInput/formInput';
 
 const RegistrationForm = () => {
@@ -76,7 +76,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <form onSubmit={handleSubmit} >
         <div className='form-body'>
           {inputFields.map((input) => (
