@@ -4,7 +4,7 @@ import FormInput from '../components/FormInput/formInput';
 
 const RegistrationForm = () => {
   const [values, setValues] = useState({
-    firstname: "",
+    firstName: "",
     lastName: "",
     email: "",
     password: "",
@@ -61,8 +61,9 @@ const RegistrationForm = () => {
   ];
 
   const handleSubmit = (e) => {
-    validateIfPasswordContainsNames(values.password, values.firstname, values.lastname)
     e.preventDefault();
+    validateIfPasswordContainsNames(values.password, values.firstName, values.lastName);
+    // Post Async and get
   };
 
   function validateIfPasswordContainsNames(password, firstName, lastName) { // Place Validation in FormInput
@@ -78,6 +79,7 @@ const RegistrationForm = () => {
   return (
     <div className='container'>
       <form onSubmit={handleSubmit} >
+      <h2>Sign Up Form</h2>
         <div className='form-body'>
           {inputFields.map((input) => (
             <FormInput
