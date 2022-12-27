@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   const inputFields = [
     {
       id: 1,
-      name: "firstname",
+      name: "firstName",
       type: "text",
       placeholder: "Firstname",
       label: "Firstname",
@@ -22,7 +22,7 @@ const RegistrationForm = () => {
     },
     {
       id: 2,
-      name: "lastname",
+      name: "lastName",
       type: "text",
       placeholder: "Lastname",
       label: "Lastname",
@@ -62,19 +62,24 @@ const RegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateIfPasswordContainsNames(values.password, values.firstName, values.lastName);
+      validateIfPasswordContainsNames()
+
     // Post Async and get
   };
 
-  function validateIfPasswordContainsNames(password, firstName, lastName) { // Place Validation in FormInput
-    if (password.search(firstName) === 0 || password.search(lastName) === 0){
+  const handleInputChange = (e) => {
+    const formFieldName = e.target.name;
+    if (formFieldName === "password") {
+      validateIfPasswordContainsNames()
+    }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  function validateIfPasswordContainsNames() { // Place Validation in FormInput
+    if (values.password.search(values.firstName) === 0 || values.password.search(values.lastName) === 0){
       alert("There is a name found in the password")
     }
   }
-
-  const handleInputChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
 
   return (
     <div className='container'>
