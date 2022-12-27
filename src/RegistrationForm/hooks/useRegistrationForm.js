@@ -12,7 +12,8 @@ const UseRegistrationForm = (initialValues, callback) => {
         validateEmail(formFieldvalue)
         break;
       case "password1":
-        // validatePassword(formFieldvalue)
+        validatePassword(formFieldvalue)
+        // Zou mooi zijn als het onActive los laat
         break;
       case "password2":
         // Check if PassWord2 is same as password1
@@ -32,6 +33,22 @@ const UseRegistrationForm = (initialValues, callback) => {
       alert("You have entered an invalid email address!");
     }
   };
+
+  function validatePassword(password) {
+    const passwordRegex = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.{8,})')
+    
+    // const firstName = this.inputs.firstName;
+    // const lastName = this.inputs.lastName;
+
+    // // Validate if Passsword has first or/-and lastname in it
+    // const result1 = password.search(/firstName/);
+    // const result2 = password.search(/lastName/);
+
+    // if (!passwordRegex.test(password)) {
+    //   alert("Your password is not strong enough!");
+    // }
+  }
+
   
   const handleSubmit = (event) => {
     if (event) {

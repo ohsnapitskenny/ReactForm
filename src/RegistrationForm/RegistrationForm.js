@@ -1,84 +1,92 @@
-import React  from 'react';
-import UseRegistrationForm from './hooks/useRegistrationForm';
+import React, {useState} from 'react';
+// import UseRegistrationForm from './hooks/useRegistrationForm';
+import FormInput from '../components/FormInput/formInput';
 
 const RegistrationForm = () => {
-  const SECONDSTOWAIT = 4000;
+  const [values, setValues] = useState({
+    firstname: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-  const registerUser = () => {
-    alert(`User Created! 
-    Name: ${inputs.firstName} ${inputs.lastName}
-    Email: ${inputs.email}`);
+  const inputFields = [
+    {
+      id: 1,
+      name: "firstname",
+      type: "text",
+      placeholder: "Firstname",
+      label: "Firstname",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "lastname",
+      type: "text",
+      placeholder: "Lastname",
+      label: "Lastname",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "It should be a valid email address!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      errorMessage:
+        "Password should have atleast one uppercase and one lowercase, also it must contain atleast 8 characters!",
+      label: "Password",
+      pattern: "^(?=.*[A-Za-z0-9]+).{8,}$",
+      required: true,
+    },
+    {
+      id: 5,
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Confirm Password",
+      errorMessage: "Passwords don't match!",
+      label: "Confirm Password",
+      pattern: values.password,
+      required: true,
+    },
+  ];
+
+  const handleSubmit = (e) => {
+    validateIfPasswordContainsNames(values.password, values.firstname, values.lastname)
+    e.preventDefault();
+  };
+
+  function validateIfPasswordContainsNames(password, firstName, lastName) { // Place Validation in FormInput
+    if (password.search(firstName) === 0 || password.search(lastName) === 0){
+      alert("There is a name found in the password")
+    }
   }
-  const {inputs, handleInputChange, handleSubmit} = UseRegistrationForm({firstName: '', lastName: '', email: '', password1: '', password2: ''}, registerUser);
-  // function resolveAfterFoursSeconds() {
-  //   return new Promise(resolve => {
-  //     setTimeout(() => {
-  //       resolve('resolved');
-  //     }, SECONDSTOWAIT);
-  //   });
-  // }
 
-  // async function asyncCall() {
-  //   console.log('calling');
-  //   const result = await resolveAfter2Seconds();
-  //   console.log(result);
-  //   // expected output: "resolved"
-  // }
+  const handleInputChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   return (
     <div>
       <form onSubmit={handleSubmit} >
         <div className='form-body'>
-          <span>Firstname: </span>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="firstName"
-            onChange={handleInputChange}
-            value={inputs.firstName}
-            required
-          />
-          <br />
-          <span>LastName: </span>
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            onChange={handleInputChange}
-            value={inputs.lastName}
-            required
-          />
-          <br />
-          <span>Email: </span>
-          <input
-            type="text"
-            placeholder="Email"
-            name="email"
-            onChange={handleInputChange}
-            value={inputs.email}
-            required
-          />
-          <br />
-          <span>Password: </span>
-          <input
-            type="password"
-            placeholder="Password"
-            name="password1"
-            onChange={handleInputChange}
-            value={inputs.password1}
-            required
-          />
-          <br />
-          <span>Re-enter Password: </span>
-          <input
-            type="password"
-            placeholder="Re-enter Password"
-            name="password2"
-            onChange={handleInputChange}
-            value={inputs.password2}
-            required
-          />
-          <br />
+          {inputFields.map((input) => (
+            <FormInput
+              key={input.id}
+              {...input}
+              value={values[input.name]}
+              onChange={handleInputChange}
+            />
+          ))}
         </div>
         <div className='form-footer'>
           <button type="submit">Sign Up</button>
