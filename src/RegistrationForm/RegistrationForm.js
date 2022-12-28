@@ -48,7 +48,7 @@ const RegistrationForm = () => {
       errorMessage:
         "Password should have atleast one uppercase and one lowercase, also it must contain atleast 8 characters!",
       label: "Password",
-      pattern: "^(?=.*[A-Za-z0-9]+).{8,}$",
+      pattern: "^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,}$",
       required: true,
     },
     {
