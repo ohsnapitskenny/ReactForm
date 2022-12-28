@@ -1,5 +1,5 @@
 import './RegistrationForm.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FormInput from '../components/FormInput/formInput';
 
 const RegistrationForm = () => {
@@ -84,12 +84,6 @@ const RegistrationForm = () => {
   };
 
   //#region GET / POST Methods
-  //Concept
-  // const httpClient = async (url, method, headers, body) => {
-  //   const response = await fetch(`https://demo-api.vercel.app/users`,);
-  //   return await response.json();
-  // }
-
   const getUsers = async () => {
     const response = await fetch(`https://demo-api.vercel.app/users`);
     const result = await response.json()
