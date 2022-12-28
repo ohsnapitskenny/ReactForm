@@ -10,6 +10,7 @@ const RegistrationForm = () => {
     password: "",
     confirmPassword: "",
   });
+
   const [formValid, setFormStatus] = useState(false);
 
   const [users, setUser] = useState([]);
@@ -135,7 +136,6 @@ const RegistrationForm = () => {
     <div className='container'>
       <form onSubmit={handleSubmit} >
         <h2>Sign Up Form</h2>
-        <h2>Form Value: {formValid}</h2>
         <div className='form-body'>
           {inputFields.map((input) => (
             <FormInput
@@ -147,7 +147,7 @@ const RegistrationForm = () => {
           ))}
         </div>
         <div className='form-footer'>
-          <button type="submit" disabled={false} >Sign Up</button>
+          <button type="submit" disabled={formValid}>Sign Up</button>
         </div>
       </form>
     </div>
