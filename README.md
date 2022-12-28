@@ -34,3 +34,28 @@ not, does the README explain why it is missing and/or different?
 • UX – Is the web interface understandable and pleasing to use? 
 • Documentation – Is there a README covering how to build and run your project? 
 • Technical choices – Are choices of libraries, architecture etc. appropriate for the task? 
+
+# Journey Highlights
+1. Created standard React Project and noticed that you could do a lot with hooks (also confusing)
+2. Created a js file to handle the form submission but realised I could make a object with input attributes instead.
+3. Standard HTML validation is great. RegEx is powerfull
+
+# Time management in hours
+React Boilerplate - 0.25
+Form + Validation - 3
+GET + POST method - 0.75
+Styling - 0,5
+Test - 0,5
+
+# Sites that helped me out
+- https://reactjs.org/docs/thinking-in-react.html
+- https://regexr.com/
+
+# Things I learned after doing this challenge
+- Developing with a new language is exiting
+- It was fun to code for 'yourself'
+- React is fast and powerfull
+- Any objects are not always bad...
+- Lost time because I noticed I could do something more efficient
+- Hooks are weird but nice.
+- Front-end testing is hard when you're not familiar with it.
